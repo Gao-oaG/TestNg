@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Set;
 
 public class SetUP {
     //chromedriver路径
@@ -17,13 +18,19 @@ public class SetUP {
 
     //访问的ip
     public static String getBaseUrl(){
-        Properties prop = new Properties();
+        Properties properties = new Properties();
         String baseUrl = null;
         try {
             //读取url地址文件
             InputStream InputStream = new BufferedInputStream(new FileInputStream(new File("src\\test\\java\\com\\test\\datas\\baseUrl.properties")));
-            prop.load(InputStream);
-            baseUrl = prop.getProperty("baseUrl");
+            properties.load(InputStream);
+            baseUrl = properties.getProperty("baseUrl");
+            //遍历所有配置文件
+//            Set<String> set = properties.stringPropertyNames();
+//            for (String key : set){
+//                String value = properties.getProperty(key);
+//                System.out.println(key+ "=" +value);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }

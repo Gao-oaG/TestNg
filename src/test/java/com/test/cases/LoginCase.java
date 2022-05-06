@@ -38,8 +38,8 @@ public class LoginCase<dataProvider> {
         //设置浏览器属性
         ChromeOptions options = SetUP.setChromeOption();
         //初始化driver
-//        driver = new ChromeDriver(options);
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
+//        driver = new ChromeDriver();
     }
 
     //用数组接收从TestData中读取的数据,这里要注意，一个xlsx文件可能有很多sheet表，所以sheetName要对应
@@ -71,11 +71,12 @@ public class LoginCase<dataProvider> {
 
         //第3步：获取标签，看是否登录成功并写入excel结果
         String message=driver.findElement(By.xpath("//*[@id=\"u1\"]/a")).getText();
+
         //如果该位置依旧为登录，则表示登录失败
         if(!message.equals("登录")){
-            ExcelReport.writeExcel(packageName+"登录测试",className,methodName,"登录","pass","");
+            ExcelReport.writeExcel(packageName+"+登录测试",className,methodName,"登录","pass","");
         }else{
-            ExcelReport.writeExcel(packageName+"登录测试",className,methodName,"登录","fail","登录失败");
+            ExcelReport.writeExcel(packageName+"+登录测试",className,methodName,"登录","fail","登录失败");
         }
     }
 
